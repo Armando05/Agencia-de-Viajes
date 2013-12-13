@@ -1,0 +1,74 @@
+/*
+ * Creado por SharpDevelop.
+ * Usuario: joseluis
+ * Fecha: 11/12/2013
+ * Hora: 06:04 p. m.
+ * 
+ * Para cambiar esta plantilla use Herramientas | Opciones | Codificación | Editar Encabezados Estándar
+ */
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace ConexionCSharpconMySQL
+{
+	/// <summary>
+	/// Description of Paquetes.
+	/// </summary>
+	public partial class Paquetes : Form
+	{
+		public Paquetes()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
+		
+		void BtnGuardarPaqueteClick(object sender, EventArgs e)
+		{
+			Paquete pPaquete = new Paquete();
+			pPaquete.id_Paquetes = txtIdPaquetes.Text.Trim();
+			pPaquete.DescPaq = cbDescripcionPaquetes.Text.Trim();
+			pPaquete.Destinos = txtDestinoPaquete.Text.Trim();
+			pPaquete.Costos = txtCostoPaquete.Text.Trim();
+			pPaquete.FechaSali = dtpFechaSalidaPaquete.Text.Trim();
+			pPaquete.FechaLLeg = dtpFechaLlegadaDestino.Text.Trim();
+			pPaquete.Categoria = txtCategoriaPaquete.Text.Trim();
+			pPaquete.Descuentos = txtDescuentoPaquete.Text.Trim();
+			pPaquete.Rembolso = txtRembolsoPaquete.Text.Trim();
+			
+			
+			
+				int resultado = ClientesDAL.Agregar(pPaquete);
+			if (resultado > 0)
+			{
+				MessageBox.Show("Registro Guardado Con Exito!!", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("No se pudo guardar el Registro", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+			
+		}
+		
+		void BtnRegresarPaqueteClick(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+		
+		void BtnLimpiarClick(object sender, EventArgs e)
+		{
+			txtIdPaquetes.Clear();
+			txtDestinoPaquete.Clear();
+			txtCostoPaquete.Clear();
+			txtCategoriaPaquete.Clear();
+			txtDescuentoPaquete.Clear();
+			txtRembolsoPaquete.Clear();
+		}
+	}
+}
