@@ -1,0 +1,66 @@
+/*
+ * Creado por SharpDevelop.
+ * Usuario: joseluis
+ * Fecha: 11/12/2013
+ * Hora: 04:43 p. m.
+ * 
+ * Para cambiar esta plantilla use Herramientas | Opciones | Codificación | Editar Encabezados Estándar
+ */
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace ConexionCSharpconMySQL
+{
+	/// <summary>
+	/// Description of Transportes.
+	/// </summary>
+	public partial class Transportes : Form
+	{
+		public Transportes()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
+		
+		void BtnGuardarTransporteClick(object sender, EventArgs e)
+		{
+			Transporte pTransporte = new Transporte();
+			pTransporte.id_transporte = txtIdTransporte.Text.Trim();
+			pTransporte.Empresa = txtEmpresaTransporte.Text.Trim();
+			pTransporte.Horarios = cbHorarioTransporte.Text.Trim();
+			pTransporte.Clase = cbClaseTransporte.Text.Trim();
+			
+			
+				int resultado = ClientesDAL.Agregar(pTransporte);
+			if (resultado > 0)
+			{
+				MessageBox.Show("Registro Guardado Con Exito!!", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("No se pudo guardar el Registro", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+		}
+		
+		void BtnRegresarTransporteClick(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+		
+		void BtnLimpiarClick(object sender, EventArgs e)
+		{
+			txtIdTransporte.Clear();
+			txtEmpresaTransporte.Clear();
+			
+		}
+		
+		
+	}
+}
