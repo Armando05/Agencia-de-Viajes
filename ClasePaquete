@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConexionCSharpconMySQL
+{
+    public class Paquete
+    {
+        public string id_Paquetes { get; set; }
+		public string DescPaq { get; set; }
+		public string Destinos { get; set; }
+		public string Costos { get; set; }
+        public string FechaSali { get; set; }
+        public string FechaLLeg { get; set; }
+        public string Categoria { get; set; }
+        public string Descuentos { get; set; }
+        public string Rembolso { get; set; }
+
+		public Paquete () { }
+
+        public Paquete(string pid_Paquetes, string pDescPaq, string pDestinos, string pCostos ,string pFechaSali,string pFechaLLeg ,string  pCategoria,string pDescuentos,string  pRembolso)
+
+		{
+            this.id_Paquetes = pid_Paquetes;
+            this.DescPaq = pDescPaq;
+            this.Destinos = pDestinos;
+            this.Costos = pCostos;
+            this.FechaSali = pFechaSali;
+             this.FechaLLeg = pFechaLLeg;
+             this.Categoria = pCategoria;
+              this.Descuentos  = pDescuentos ;
+              this.Rembolso = pRembolso;
+		
+		}
+		
+
+	}
+	
+}
+  
