@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConexionCSharpconMySQL
+{
+    class Transporte
+    {
+           public string id_transporte { get; set; }
+		public string Empresa { get; set; }
+		public string Horarios { get; set; }
+		public string Clase { get; set; }
+		
+		
+
+		public Transporte () { }
+
+		public Transporte(string pid_transporte, string pEmpresa, string pHorarios, string pClase)
+
+		{
+			this.id_transporte = pid_transporte;
+			this.Empresa = pEmpresa;
+			this.Horarios = pHorarios;
+			this.Clase = pClase;
+			
+		
+		}
+		
+
+	}
+	
+}
