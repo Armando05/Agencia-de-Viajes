@@ -1,0 +1,155 @@
+
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace ConexionCSharpconMySQL
+{
+	/// <summary>
+	/// Description of MainForm.
+	/// </summary>
+	public partial class MainForm : Form
+	{
+		public MainForm()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
+		
+		public Cliente ClienteActual {get; set;}
+		
+		void BtnGuardarClick(object sender, EventArgs e)
+		{
+			Cliente pCliente = new Cliente();
+			pCliente.Nombre = txtNombre.Text.Trim();
+			pCliente.Apellido = txtApellido.Text.Trim();
+			pCliente.Fecha_Nac = dtpFechaNacimiento.Value.Year + "/" + dtpFechaNacimiento.Value.Month + "/" + dtpFechaNacimiento.Value.Day;
+			pCliente.Direccion = txtDireccion.Text.Trim();
+			
+			
+			
+			int resultado = ClientesDAL.Agregar(pCliente);
+			if (resultado > 0)
+			{
+				MessageBox.Show("Cliente Guardado Con Exito!!", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("No se pudo guardar el cliente", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+			
+		}
+		
+		
+		
+		void BtnBuscarClick(object sender, EventArgs e)
+		{
+			BuscarClientes buscar = new BuscarClientes();
+			buscar.ShowDialog();
+			
+			if(buscar.ClienteSeleccionado != null)
+			{
+				ClienteActual = buscar.ClienteSeleccionado;
+				txtNombre.Text = buscar.ClienteSeleccionado.Nombre;
+				txtApellido.Text = buscar.ClienteSeleccionado.Apellido;
+				txtDireccion.Text = buscar.ClienteSeleccionado.Direccion;
+				dtpFechaNacimiento.Text = buscar.ClienteSeleccionado.Fecha_Nac;
+			}
+		}
+		
+		
+		
+		void BtnActualizarClick(object sender, EventArgs e)
+		{
+			Cliente pCliente = new Cliente();
+			pCliente.Nombre = txtNombre.Text.Trim();
+			pCliente.Nombre = txtNombre.Text.Trim();
+			pCliente.Apellido = txtApellido.Text.Trim();
+			pCliente.Fecha_Nac = dtpFechaNacimiento.Value.Year + "/" + dtpFechaNacimiento.Value.Month + "/" + dtpFechaNacimiento.Value.Day;
+			pCliente.Direccion = txtDireccion.Text.Trim();
+			pCliente.Id = ClienteActual.Id;
+
+			if (ClientesDAL.Actualizar(pCliente) > 0)
+			{
+				MessageBox.Show("Los datos del cliente se actualizaron", "Datos Actualizados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("No se pudo actualizar", "Error al Actualizar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+			}
+
+		}
+		
+		void BtnEliminarClick(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Esta Seguro que desea eliminar el Cliente Actual", "Estas Seguro??", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				if (ClientesDAL.Eliminar(ClienteActual.Id) > 0)
+				{
+					MessageBox.Show("Cliente Eliminado Correctamente!", "Cliente Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MessageBox.Show("No se pudo eliminar el Cliente", "Cliente No Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+			}
+			else
+				MessageBox.Show("Se cancelo la eliminacion", "Eliminacion Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+		}
+		
+		
+		
+		
+		
+		void BtnAerolineasClick(object sender, EventArgs e)
+		{
+			Aerolineas buscar = new Aerolineas();
+			buscar.ShowDialog();
+		}
+		
+		void BtnTrasporteClick(object sender, EventArgs e)
+		{
+			Transportes busca = new Transportes();
+			busca.ShowDialog();
+		}
+		
+		void BtnVentasClick(object sender, EventArgs e)
+		{
+			Ventas busca = new Ventas();
+			busca.ShowDialog();
+		}
+		
+		void BtnHotelesClick(object sender, EventArgs e)
+		{
+			Hoteles busca = new Hoteles();
+			busca.ShowDialog();
+		}
+		
+		void BtnPaquetesClick(object sender, EventArgs e)
+		{
+			Paquetes busca = new Paquetes();
+			busca.ShowDialog();
+		}
+		
+		void BtnDestinosClick(object sender, EventArgs e)
+		{
+			Destinos busca = new Destinos();
+			busca.ShowDialog();
+		}
+		
+		void BtnLimpiarClick(object sender, EventArgs e)
+		{
+			txtNombre.Clear();
+			txtApellido.Clear();
+			txtDireccion.Clear();
+		}
+	}
+}
