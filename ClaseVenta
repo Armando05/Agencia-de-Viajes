@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConexionCSharpconMySQL
+{
+    class Venta
+    {
+  public string id_Venta { get; set; }
+		public string DescripcionVenta  { get; set; }
+		public string Fecha  { get; set; }
+		public string Cliente { get; set; }
+    public string  Descuento { get; set; }
+    public string PrecioTReal { get; set; }
+    public string CantidadVenta { get; set; }
+    public string MontoTotal { get; set; }
+		
+		
+
+		public Venta () { }
+
+		public Venta(string pid_Venta, string pDescripcionVenta, string pFecha , string pCliente ,string pDescuento,string pPrecioTReal,string pCantidadVenta,string pMontoTotal)
+
+		{
+			this.id_Venta = pid_Venta;
+			this.DescripcionVenta = pDescripcionVenta;
+			this.Fecha  = pFecha ;
+			this.Cliente = pCliente;
+            this.Descuento = pDescuento;
+			this.PrecioTReal = pPrecioTReal;
+			this.CantidadVenta = pCantidadVenta;
+			this.MontoTotal = pMontoTotal;
+			
+		
+		}
+		
+
+	}
+	
+}
+  
+
